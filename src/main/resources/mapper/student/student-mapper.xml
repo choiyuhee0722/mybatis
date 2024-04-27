@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper가 root 태그로 namespace속성을 가진다.
+	 namespace속성 : 외부(javacode)mapper를 인식하는 id값 *반드시 설정해야함.
+ -->
+<mapper namespace="student">
+	<!-- 싱행할 sql문 작성 
+		mapper에서 제공하는 태그를 사용
+		<select> : select문을 작성했을 때 사용
+		<insert> : insert문을 작성했을 때 사용
+		<update> : update문을 작성했을 때 사용
+		<delete> : delete문을 작성했을 때 사용
+		* 모든 태그에는 id속성을 반드시 설정 -> sql문을 지정하는 id값
+		parameterType : 외부에서 전달받은 데이터에 대한 타입을 설정
+		select문의 결과를 매핑해주는 객체의 Type 설정할때
+		resultType, resultMap  
+	-->
+	
+	<insert id="insertStudent">
+		INSERT INTO STUDENT VALUES(SEQ_STUDENT.NEXTVAL,'유병승',
+		'01012341234','teacher@teacher.com','경기도 안양시',SYSDATE)
+	</insert>
+	
+	<!-- 외부에서 받아온 값이 잇는 경우 parameterType 속성을 설정 
+		mybatis 별칭탕미을 작성
+	-->
+	<insert id="insertStudentByName" parameterType="string">
+		INSERT INTO STUDENT VALUES(SEQ_STUDENT.NEXTVAL,#{name},
+		'01012341234','teacher@teacher.com','경기도 안양시',SYSDATE)
+	</insert>
+	
+</mapper>						
